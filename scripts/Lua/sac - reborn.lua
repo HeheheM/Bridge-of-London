@@ -2,6 +2,7 @@
 				Sida's Auto Reborn
 		]]
 
+		local Version = ""
 		local AutoCarryGlobal = {}
 		local VP
 		AutoCarryGlobal.Data = {}
