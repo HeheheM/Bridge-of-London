@@ -16,7 +16,6 @@ namespace Bridge_of_London.Core
         public static string RootLibScriptDir = Path.Combine(RootScriptDir, "Lib");
 
         public static List<Script> Scripts;
-        public static List<Script> Libraries;
 
         public static void Init()
         {
@@ -27,25 +26,22 @@ namespace Bridge_of_London.Core
             if (!Directory.Exists(RootLibScriptDir))
                 Directory.CreateDirectory(RootLibScriptDir);
 
-            // Initialize lists
+            // Initialize list
             Scripts = new List<Script>();
-            Libraries = new List<Script>();
-
-            foreach (var libScript in Directory.GetFiles(RootLibScriptDir).Where(x => x.EndsWith(".lua")))
-            {
-                var script = new Script();
-                ApiHandler.AddApi(script);
-                script.LoadFile(libScript);
-
-                // Add script to the list
-                Libraries.Add(script);
-            }
-
+           
             foreach (var scriptFile in Directory.GetFiles(RootScriptDir).Where(x => x.EndsWith(".lua")))
             {
                 var script = new Script();
                 ApiHandler.AddApi(script);
-                script.DoFile(scriptFile);
+
+                //Get each lib file, and load it to the script
+                foreach (var libFile in Directory.GetFiles(RootLibScriptDir).Where(x => x.EndsWith(".lua")))
+                {
+                    script.LoadFile(libFile);
+                }
+
+                //We don't run the script, but instead load it and call it's functions.
+                script.LoadFile(scriptFile);
 
                 // Add script to the list
                 Scripts.Add(script);
