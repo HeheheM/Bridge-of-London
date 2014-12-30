@@ -31,7 +31,7 @@ namespace Bridge_of_London.Core.API
         {
             foreach (var script in ScriptLoader.Scripts)
             {
-                script.Call("OnLoad");
+                script.Call(script.Globals["OnLoad"]);
             }
         }
         #endregion
