@@ -42,7 +42,7 @@ namespace Bridge_of_London.Core
                 }
 
                 //We don't run the script, but instead load it and call it's functions.
-                script.LoadFile(scriptFile);
+                script.DoFile(scriptFile);
 
                 // Add script to the list
                 Scripts.Add(script);

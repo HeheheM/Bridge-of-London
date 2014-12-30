@@ -23,7 +23,7 @@ namespace Bridge_of_London.Core.API
         {
             foreach (var script in ScriptLoader.Scripts)
             {
-                Console.WriteLine(script.Globals["OnTick"].ToString());
+                script.Call(script.Globals["OnTick"]);
             }
         }
 
