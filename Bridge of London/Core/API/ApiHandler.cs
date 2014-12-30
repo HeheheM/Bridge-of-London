@@ -68,8 +68,6 @@ namespace Bridge_of_London.Core.API
             }
         }
 
-        #endregion
-
         public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
             foreach (var script in ScriptLoader.Scripts)
@@ -94,5 +92,7 @@ namespace Bridge_of_London.Core.API
                 //script.Call(script.Globals["OnSendPacket"], args.)
             }
         }
+
+        #endregion
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,6 @@ namespace Bridge_of_London.Core.API.Drawing
 {
     class DrawingApi
     {
-        [MoonSharpUserData]
         class RGBA
         {
             private int R;
@@ -44,12 +44,18 @@ namespace Bridge_of_London.Core.API.Drawing
 
         public static void AddApi(Script script)
         {
-            UserData.RegisterAssembly();
-
+            UserData.RegisterType<RGBA>();
+            script.Globals["RGBA"] = (Func<int, int, int ,int, RGBA>) MakeRGBA;
             script.Globals["DrawText"] = (Action<string, int, float, float, RGBA>) DrawText;
             script.Globals["DrawLine"] = (Action<float, float, float, float, int, RGBA>) DrawLine;
             script.Globals["DrawCircle"] = (Action<float, float, float, int, RGBA>)  DrawCircle;
         }
+
+        private static RGBA MakeRGBA(int r, int g, int b, int a)
+        {
+            return new RGBA(r, g, b, a);
+        }
+
 
         private static void DrawCircle(float x, float y, float z, int size, RGBA color)
         {
