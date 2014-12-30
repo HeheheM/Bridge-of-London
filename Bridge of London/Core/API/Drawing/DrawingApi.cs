@@ -12,6 +12,7 @@ namespace Bridge_of_London.Core.API.Drawing
 {
     class DrawingApi
     {
+        [MoonSharpUserData]
         class RGBA
         {
             private int R;
@@ -43,7 +44,7 @@ namespace Bridge_of_London.Core.API.Drawing
 
         public static void AddApi(Script script)
         {
-            script.Globals["RGBA"] = new RGBA();
+            UserData.RegisterAssembly();
 
             script.Globals["DrawText"] = (Action<string, int, float, float, RGBA>) DrawText;
             script.Globals["DrawLine"] = (Action<float, float, float, float, int, RGBA>) DrawLine;
