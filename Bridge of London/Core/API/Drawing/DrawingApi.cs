@@ -43,8 +43,7 @@ namespace Bridge_of_London.Core.API.Drawing
 
         public static void AddApi(Script script)
         {
-            UserData.RegisterType<RGBA>();
-            script.Globals["RGBA"] = UserData.Create(new RGBA());
+            script.Globals["RGBA"] = new RGBA();
 
             script.Globals["DrawText"] = (Action<string, int, float, float, RGBA>) DrawText;
             script.Globals["DrawLine"] = (Action<float, float, float, float, int, RGBA>) DrawLine;
