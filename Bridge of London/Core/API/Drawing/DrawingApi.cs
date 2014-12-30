@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LeagueSharp;
 using MoonSharp.Interpreter;
 using SharpDX;
 using SharpDX.Direct3D9;
@@ -59,6 +60,7 @@ namespace Bridge_of_London.Core.API.Drawing
 
         private static void DrawCircle(float x, float y, float z, float size, RGBA color)
         {
+            Game.PrintChat("DrawCircle was called {0}:{1}:{2} {3}", x, y, z, size);
             LeagueSharp.Drawing.DrawCircle(new Vector3(x, y, z), size, color.ToSystemColor());
         }
 
