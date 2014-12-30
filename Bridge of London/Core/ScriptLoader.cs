@@ -29,6 +29,7 @@ namespace Bridge_of_London.Core
             // Initialize list
             Scripts = new List<Script>();
            
+            Console.WriteLine(Directory.GetFiles(RootScriptDir).Count());
             foreach (var scriptFile in Directory.GetFiles(RootScriptDir).Where(x => x.EndsWith(".lua")))
             {
                 var script = new Script();
