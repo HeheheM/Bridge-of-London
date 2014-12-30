@@ -13,7 +13,7 @@ namespace Bridge_of_London.Core.API
 
         public static void AddApi(Script script)
         {
-            script.Globals["PrintChat"] = (Action<string>) PrintChat;
+            script.Globals["PrintChat"] = (Action<string>) Game.PrintChat;
         }
 
 
@@ -37,10 +37,7 @@ namespace Bridge_of_London.Core.API
         #endregion
 
         #region Game Class
-        private static void PrintChat(string text)
-        {
-            Game.PrintChat(text);
-        }
+
         #endregion
     }
 }
