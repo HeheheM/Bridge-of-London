@@ -37,11 +37,11 @@ namespace Bridge_of_London.Core
                 //Get each lib file, and load it to the script
                 foreach (var libFile in Directory.GetFiles(RootLibScriptDir).Where(x => x.EndsWith(".lua")))
                 {
-                    script.DoFile(libFile);
+                    script.LoadFile(libFile);
                 }
 
                 //We don't run the script, but instead load it and call it's functions.
-                script.DoFile(scriptFile);
+                script.LoadFile(scriptFile);
 
                 // Add script to the list
                 Scripts.Add(script);
