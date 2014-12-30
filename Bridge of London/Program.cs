@@ -15,6 +15,8 @@ namespace Bridge_of_London
         static void Main(string[] args)
         {
             CustomEvents.Game.OnGameLoad += GameOnOnGameLoad;
+
+            // Setup load event for the Lua API
             CustomEvents.Game.OnGameLoad += ApiHandler.OnGameLoad;
         }
 
@@ -23,7 +25,16 @@ namespace Bridge_of_London
             // Load all the scripts
             ScriptLoader.Init();
 
+            // API Events
             Game.OnGameUpdate += ApiHandler.OnGameUpdate;
+            Drawing.OnDraw += ApiHandler.OnDraw;
+            GameObject.OnCreate += ApiHandler.OnCreateObj;
+            GameObject.OnDelete += ApiHandler.OnDeleteObj;
+            Game.OnWndProc += ApiHandler.OnWndMsg;
+            Obj_AI_Base.OnProcessSpellCast += ApiHandler.OnProcessSpellCast;
+            Game.OnGameInput += ApiHandler.OnSendChat;
+            Game.OnGameSendPacket += ApiHandler.OnSendPacket;
+            
         }
     }
 }

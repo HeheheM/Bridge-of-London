@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bridge_of_London.Core.API.Drawing;
 using LeagueSharp;
 using MoonSharp.Interpreter;
 
@@ -14,30 +15,84 @@ namespace Bridge_of_London.Core.API
         public static void AddApi(Script script)
         {
             script.Globals["PrintChat"] = (Action<string>) Game.PrintChat;
+
+            //Add Drawing API
+            DrawingApi.AddApi(script);
         }
 
-
-        #region Events
-
-        public static void OnGameUpdate(EventArgs eventArgs)
+        private static void CallFunc(string funcName)
         {
             foreach (var script in ScriptLoader.Scripts)
             {
-                script.Call(script.Globals["OnTick"]);
+                script.Call(script.Globals[funcName]);
             }
+        }
+
+        #region Events
+        public static void OnGameUpdate(EventArgs eventArgs)
+        {
+            CallFunc("OnTick");
         }
 
         public static void OnGameLoad(EventArgs eventArgs)
         {
+            CallFunc("OnLoad");
+        }
+
+        public static void OnDraw(EventArgs args)
+        {
+            CallFunc("OnDraw");
+        }
+
+        public static void OnCreateObj(GameObject sender, EventArgs args)
+        {
             foreach (var script in ScriptLoader.Scripts)
             {
-                script.Call(script.Globals["OnLoad"]);
+                script.Call(script.Globals["OnCreateObj"], sender);
             }
         }
+
+        public static void OnDeleteObj(GameObject sender, EventArgs args)
+        {
+            foreach (var script in ScriptLoader.Scripts)
+            {
+                script.Call(script.Globals["OnDeleteObj"], sender);
+            }
+        }
+
+        public static void OnWndMsg(WndEventArgs args)
+        {
+            foreach (var script in ScriptLoader.Scripts)
+            {
+                script.Call(script.Globals["OnWndMsg"], args.Msg, args.WParam);
+            }
+        }
+
         #endregion
 
-        #region Game Class
+        public static void OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        {
+            foreach (var script in ScriptLoader.Scripts)
+            {
+                script.Call(script.Globals["OnProcessSpell"], sender, args);
+            }
+        }
 
-        #endregion
+        public static void OnSendChat(GameInputEventArgs args)
+        {
+            foreach (var script in ScriptLoader.Scripts)
+            {
+                script.Call(script.Globals["OnSendChat"], args.Input);
+            }
+        }
+
+        public static void OnSendPacket(GamePacketEventArgs args)
+        {
+            foreach (var script in ScriptLoader.Scripts)
+            {
+                //Disabled until CLoLPacket is implemented
+                //script.Call(script.Globals["OnSendPacket"], args.)
+            }
+        }
     }
 }
