@@ -47,9 +47,10 @@ namespace Bridge_of_London.Core.API.Drawing
         {
             UserData.RegisterType<RGBA>();
             script.Globals["RGBA"] = (Func<int, int, int ,int, RGBA>) MakeRGBA;
+            script.Globals["DrawCircle"] = (Action<float, float, float, float, RGBA>)DrawCircle;
             script.Globals["DrawText"] = (Action<string, int, float, float, RGBA>) DrawText;
             script.Globals["DrawLine"] = (Action<float, float, float, float, float, RGBA>) DrawLine;
-            script.Globals["DrawCircle"] = (Action<float, float, float, float, RGBA>)  DrawCircle;
+            
         }
 
         private static RGBA MakeRGBA(int r, int g, int b, int a)
