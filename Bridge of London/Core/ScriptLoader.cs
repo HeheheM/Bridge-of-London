@@ -30,13 +30,13 @@ namespace Bridge_of_London.Core
             Scripts = new List<Script>();
            
             Console.WriteLine(Directory.GetFiles(RootScriptDir).Count());
-            foreach (var scriptFile in Directory.GetFiles(RootScriptDir).Where(x => x.EndsWith(".lua")))
+            foreach (var scriptFile in Directory.GetFiles(RootScriptDir))
             {
                 var script = new Script();
                 ApiHandler.AddApi(script);
 
                 //Get each lib file, and load it to the script
-                foreach (var libFile in Directory.GetFiles(RootLibScriptDir).Where(x => x.EndsWith(".lua")))
+                foreach (var libFile in Directory.GetFiles(RootLibScriptDir))
                 {
                     script.LoadFile(libFile);
                 }
