@@ -47,7 +47,7 @@ namespace Bridge_of_London.Core.API.Drawing
         {
             UserData.RegisterType<RGBA>();
             script.Globals["RGBA"] = (Func<int, int, int ,int, RGBA>) MakeRGBA;
-            script.Globals["DrawCircle"] = (Action) Test;
+            script.Globals["DrawCircle"] = (Action<float, float, float, float, RGBA>) DrawCircle;
             script.Globals["DrawText"] = (Action<string, int, float, float, RGBA>) DrawText;
             script.Globals["DrawLine"] = (Action<float, float, float, float, float, RGBA>) DrawLine;
             
@@ -58,15 +58,10 @@ namespace Bridge_of_London.Core.API.Drawing
             return new RGBA(r, g, b, a);
         }
 
-        private static void Test()
-        {
-            Game.PrintChat("HNGGG");
-        }
-
-        private static void DrawCircle(float x, float y, float z, int size, RGBA color)
+        private static void DrawCircle(float x, float y, float z, float size, RGBA color)
         {
             Game.PrintChat("DrawCircle was called {0}:{1}:{2} {3}", x, y, z, size);
-            LeagueSharp.Drawing.DrawCircle(new Vector3(x, y, z), size, color.ToSystemColor());
+            LeagueSharp.Drawing.DrawCircle(Vector3.Zero, size, color.ToSystemColor());
         }
 
         private static void DrawLine(float x1, float x2, float y1, float y2, float size, RGBA color)
