@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿#region
+
+using System;
 using Bridge_of_London.Core.API.Drawing;
 using LeagueSharp;
 using MoonSharp.Interpreter;
 
+#endregion
+
 namespace Bridge_of_London.Core.API
 {
-    class ApiHandler
+    internal class ApiHandler
     {
-
         public static void AddApi(Script script)
         {
             script.Globals["PrintChat"] = (Action<string>) Game.PrintChat;
@@ -29,6 +28,7 @@ namespace Bridge_of_London.Core.API
         }
 
         #region Events
+
         public static void OnGameUpdate(EventArgs eventArgs)
         {
             CallFunc("OnTick");

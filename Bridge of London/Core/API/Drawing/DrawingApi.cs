@@ -1,56 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿#region
+
+using System;
 using LeagueSharp;
 using MoonSharp.Interpreter;
 using SharpDX;
-using SharpDX.Direct3D9;
 using Color = System.Drawing.Color;
+
+#endregion
 
 namespace Bridge_of_London.Core.API.Drawing
 {
-    class DrawingApi
+    internal class DrawingApi
     {
-        class RGBA
-        {
-            private int R;
-            private int G;
-            private int B;
-            private int A;
-
-            public RGBA(int r, int g, int b, int a)
-            {
-                R = r;
-                G = g;
-                B = b;
-                A = a;
-            }
-
-            public RGBA()
-            {
-                R = 0;
-                G = 0;
-                B = 0;
-                A = 0;
-            }
-
-            public Color ToSystemColor()
-            {
-                return Color.FromArgb(R, G, B, A);
-            }
-        }
-
         public static void AddApi(Script script)
         {
             UserData.RegisterType<RGBA>();
-            script.Globals["RGBA"] = (Func<int, int, int ,int, RGBA>) MakeRGBA;
+            script.Globals["RGBA"] = (Func<int, int, int, int, RGBA>) MakeRGBA;
             script.Globals["DrawCircle"] = (Action<float, float, float, float, RGBA>) DrawCircle;
             script.Globals["DrawText"] = (Action<string, int, float, float, RGBA>) DrawText;
             script.Globals["DrawLine"] = (Action<float, float, float, float, float, RGBA>) DrawLine;
-            
         }
 
         private static RGBA MakeRGBA(int r, int g, int b, int a)
@@ -72,6 +40,35 @@ namespace Bridge_of_London.Core.API.Drawing
         private static void DrawText(string text, int size, float x, float y, RGBA color)
         {
             LeagueSharp.Drawing.DrawText(x, y, color.ToSystemColor(), text);
+        }
+
+        private class RGBA
+        {
+            private readonly int A;
+            private readonly int B;
+            private readonly int G;
+            private readonly int R;
+
+            public RGBA(int r, int g, int b, int a)
+            {
+                R = r;
+                G = g;
+                B = b;
+                A = a;
+            }
+
+            public RGBA()
+            {
+                R = 0;
+                G = 0;
+                B = 0;
+                A = 0;
+            }
+
+            public Color ToSystemColor()
+            {
+                return Color.FromArgb(A, R, G, B);
+            }
         }
     }
 }

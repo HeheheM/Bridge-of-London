@@ -1,20 +1,19 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Bridge_of_London.Core.API;
 using LeagueSharp.Common;
 using MoonSharp.Interpreter;
 
+#endregion
+
 namespace Bridge_of_London.Core
 {
-    class ScriptLoader
+    internal class ScriptLoader
     {
-        public static string RootScriptDir = Path.Combine(Config.LeagueSharpDirectory, "Lua");
-        public static string RootLibScriptDir = Path.Combine(RootScriptDir, "Lib");
-
         public static List<Script> Scripts;
 
         public static void Init()
@@ -28,7 +27,7 @@ namespace Bridge_of_London.Core
 
             // Initialize list
             Scripts = new List<Script>();
-           
+
             Console.WriteLine(Directory.GetFiles(RootScriptDir).Count());
             foreach (var scriptFile in Directory.GetFiles(RootScriptDir))
             {
@@ -48,5 +47,8 @@ namespace Bridge_of_London.Core
                 Scripts.Add(script);
             }
         }
+
+        public static string RootScriptDir = Path.Combine(Config.LeagueSharpDirectory, "Lua");
+        public static string RootLibScriptDir = Path.Combine(RootScriptDir, "Lib");
     }
 }

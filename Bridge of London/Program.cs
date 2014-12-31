@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿#region
+
+using System;
 using Bridge_of_London.Core;
 using Bridge_of_London.Core.API;
 using LeagueSharp;
 using LeagueSharp.Common;
 
+#endregion
+
 namespace Bridge_of_London
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             CustomEvents.Game.OnGameLoad += GameOnOnGameLoad;
 
@@ -34,7 +34,6 @@ namespace Bridge_of_London
             Obj_AI_Base.OnProcessSpellCast += ApiHandler.OnProcessSpellCast;
             Game.OnGameInput += ApiHandler.OnSendChat;
             Game.OnGameSendPacket += ApiHandler.OnSendPacket;
-            
         }
     }
 }
