@@ -61,7 +61,7 @@ namespace Bridge_of_London.Core.API.Drawing
         private static void DrawCircle(float x, float y, float z, float size, RGBA color)
         {
             Game.PrintChat("DrawCircle was called {0}:{1}:{2} {3}", x, y, z, size);
-            LeagueSharp.Drawing.DrawCircle(Vector3.Zero, size, color.ToSystemColor());
+            LeagueSharp.Drawing.DrawCircle(new Vector3(x, y, z), size, color.ToSystemColor());
         }
 
         private static void DrawLine(float x1, float x2, float y1, float y2, float size, RGBA color)
