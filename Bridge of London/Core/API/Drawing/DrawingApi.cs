@@ -1,6 +1,8 @@
 ﻿#region
 
 using System;
+using System.Globalization;
+using System.Xml.Serialization;
 using LeagueSharp;
 using MoonSharp.Interpreter;
 using SharpDX;
@@ -14,42 +16,83 @@ namespace Bridge_of_London.Core.API.Drawing
     {
         public static void AddApi(Script script)
         {
-            UserData.RegisterType<RGBA>();
-            script.Globals["RGBA"] = (Func<int, int, int, int, RGBA>) MakeRGBA;
-            script.Globals["DrawCircle"] = (Action<float, float, float, float, RGBA>) DrawCircle;
-            script.Globals["DrawText"] = (Action<string, int, float, float, RGBA>) DrawText;
-            script.Globals["DrawLine"] = (Action<float, float, float, float, float, RGBA>) DrawLine;
+            UserData.RegisterType<ARGB>();
+
+            script.Globals["ARGB"] = (Func<int, int, int, int, ARGB>) MakeARGB;
+
+            script.Globals["DrawCircle"] = (Action<float, float, float, float, ARGB>) DrawCircle;
+            script.Globals["DrawCircle"] = (Action<float, float, float, float, uint>) DrawCircle;
+
+            script.Globals["DrawText"] = (Action<string, int, float, float, ARGB>) DrawText;
+            script.Globals["DrawText"] = (Action<string, int, float, float, uint>) DrawText;
+
+            script.Globals["DrawLine"] = (Action<float, float, float, float, float, ARGB>) DrawLine;
+            script.Globals["DrawLine"] = (Action<float, float, float, float, float, uint>) DrawLine;
         }
 
-        private static RGBA MakeRGBA(int r, int g, int b, int a)
+
+        private static ARGB MakeARGB(int r, int g, int b, int a)
         {
-            return new RGBA(r, g, b, a);
+            return new ARGB(r, g, b, a);
         }
 
-        private static void DrawCircle(float x, float y, float z, float size, RGBA color)
+
+        private static void DrawCircle(float x, float y, float z, float size, ARGB color)
         {
-            Game.PrintChat("DrawCircle was called {0}:{1}:{2} {3}", x, y, z, size);
             LeagueSharp.Drawing.DrawCircle(new Vector3(x, y, z), size, color.ToSystemColor());
         }
 
-        private static void DrawLine(float x1, float x2, float y1, float y2, float size, RGBA color)
+        private static void DrawCircle(float x, float y, float z, float size, uint color)
+        {
+            LeagueSharp.Drawing.DrawCircle(new Vector3(x, y, z), size, ReadColor(color));
+        }
+
+
+        private static void DrawLine(float x1, float x2, float y1, float y2, float size, ARGB color)
         {
             LeagueSharp.Drawing.DrawLine(x1, y1, x1, x2, size, color.ToSystemColor());
         }
 
-        private static void DrawText(string text, int size, float x, float y, RGBA color)
+        private static void DrawLine(float x1, float x2, float y1, float y2, float size, uint color)
+        {
+            LeagueSharp.Drawing.DrawLine(x1, y1, x2, y2, size, ReadColor(color));
+        }
+
+
+        private static void DrawText(string text, int size, float x, float y, uint color)
+        {
+            LeagueSharp.Drawing.DrawText(x, y, ReadColor(color), text);
+        }
+
+        private static void DrawText(string text, int size, float x, float y, ARGB color)
         {
             LeagueSharp.Drawing.DrawText(x, y, color.ToSystemColor(), text);
         }
 
-        private class RGBA
+        private static Color ReadColor(uint color)
+        {
+            // Example: 0xFF80FF00
+            // Convert unit to hex value 
+            var hexString = color.ToString("X");
+
+            // Get hex values of color
+            var hexR = Byte.Parse(hexString.Substring(0, 2), NumberStyles.HexNumber);
+            var hexG = Byte.Parse(hexString.Substring(2, 2), NumberStyles.HexNumber);
+            var hexB = Byte.Parse(hexString.Substring(4, 2), NumberStyles.HexNumber);
+            var hexA = Byte.Parse(hexString.Substring(6, 2), NumberStyles.HexNumber);
+
+            return Color.FromArgb(hexA, hexR, hexG, hexB);
+
+        }
+
+        private class ARGB
         {
             private readonly int A;
             private readonly int B;
             private readonly int G;
             private readonly int R;
 
-            public RGBA(int r, int g, int b, int a)
+            public ARGB(int r, int g, int b, int a)
             {
                 R = r;
                 G = g;
@@ -57,7 +100,7 @@ namespace Bridge_of_London.Core.API.Drawing
                 A = a;
             }
 
-            public RGBA()
+            public ARGB()
             {
                 R = 0;
                 G = 0;
