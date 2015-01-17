@@ -2,8 +2,6 @@
 
 using System;
 using System.Globalization;
-using System.Xml.Serialization;
-using LeagueSharp;
 using MoonSharp.Interpreter;
 using SharpDX;
 using Color = System.Drawing.Color;
@@ -33,7 +31,7 @@ namespace Bridge_of_London.Core.API.Drawing
 
         private static ARGB MakeARGB(int r, int g, int b, int a)
         {
-            return new ARGB(r, g, b, a);
+            return new ARGB(a, r, g, b);
         }
 
 
@@ -92,7 +90,7 @@ namespace Bridge_of_London.Core.API.Drawing
             private readonly int G;
             private readonly int R;
 
-            public ARGB(int r, int g, int b, int a)
+            public ARGB(int a, int r, int g, int b)
             {
                 R = r;
                 G = g;
