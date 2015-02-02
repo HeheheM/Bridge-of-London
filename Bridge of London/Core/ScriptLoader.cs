@@ -40,7 +40,7 @@ namespace Bridge_of_London.Core
                     script.LoadFile(libFile);
                 }
 
-                //We don't run the script, but instead load it and call it's functions.
+                // Run the script :D
                 script.DoFile(scriptFile);
 
                 // Add script to the list

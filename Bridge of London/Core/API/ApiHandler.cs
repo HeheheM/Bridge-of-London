@@ -2,6 +2,7 @@
 
 using System;
 using Bridge_of_London.Core.API.Drawing;
+using Bridge_of_London.Core.API.Util;
 using LeagueSharp;
 using MoonSharp.Interpreter;
 
@@ -15,8 +16,9 @@ namespace Bridge_of_London.Core.API
         {
             script.Globals["PrintChat"] = (Action<string>) Game.PrintChat;
 
-            //Add Drawing API
+            //Add API's
             DrawingApi.AddApi(script);
+            UtilApi.AddApi(script);
         }
 
         private static void CallFunc(string funcName)

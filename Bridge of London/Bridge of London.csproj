@@ -32,8 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Antlr4.Runtime.net35">
-      <HintPath>..\packages\MoonSharp.0.8.0.2\lib\Antlr4.Runtime.net35.dll</HintPath>
+    <Reference Include="Antlr4.Runtime.net35, Version=4.3.0.0, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MoonSharp.0.8.5.1\lib\Antlr4.Runtime.net35.dll</HintPath>
     </Reference>
     <Reference Include="LeagueSharp">
       <HintPath>..\..\..\..\..\..\Justin\Desktop\LeagueSharp\System\LeagueSharp.dll</HintPath>
@@ -41,8 +42,9 @@
     <Reference Include="LeagueSharp.Common">
       <HintPath>..\..\..\..\..\..\Justin\Desktop\LeagueSharp\System\LeagueSharp.Common.dll</HintPath>
     </Reference>
-    <Reference Include="MoonSharp.Interpreter">
-      <HintPath>..\packages\MoonSharp.0.8.0.2\lib\MoonSharp.Interpreter.dll</HintPath>
+    <Reference Include="MoonSharp.Interpreter, Version=0.8.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MoonSharp.0.8.5.1\lib\MoonSharp.Interpreter.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX">
       <HintPath>..\..\..\..\..\..\Justin\Desktop\LeagueSharp\System\SharpDX.dll</HintPath>
@@ -62,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Core\API\ApiHandler.cs" />
     <Compile Include="Core\API\Drawing\DrawingApi.cs" />
+    <Compile Include="Core\API\Util\UtilApi.cs" />
     <Compile Include="Core\ScriptLoader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,7 +74,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Antlr4.Runtime.net35.xml" />
     <Content Include="MoonSharp.Interpreter.XML" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

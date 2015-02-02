@@ -26,6 +26,8 @@ namespace Bridge_of_London.Core.API.Drawing
 
             script.Globals["DrawLine"] = (Action<float, float, float, float, float, ARGB>) DrawLine;
             script.Globals["DrawLine"] = (Action<float, float, float, float, float, uint>) DrawLine;
+
+            
         }
 
 
