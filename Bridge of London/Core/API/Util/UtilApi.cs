@@ -1,7 +1,7 @@
 ﻿using System;
+using Bridge_of_London.Classes;
 using LeagueSharp;
 using MoonSharp.Interpreter;
-using SharpDX;
 
 namespace Bridge_of_London.Core.API.Util
 {
@@ -9,9 +9,11 @@ namespace Bridge_of_London.Core.API.Util
     {
         public static void AddApi(Script script)
         {
+            UserData.RegisterType<Position>();
+
             script.Globals["GetTickCount"] = (Func<int>) GetTickCount;
             script.Globals["GetLatency"] = (Func<int>) GetPing;
-            script.Globals["GetCursorPos"] = (Func<Vector3>) GetCursorPosition;
+            script.Globals["GetCursorPos"] = (Func<Position>) GetCursorPosition;
             script.Globals["GetGameTimer"] = (Func<float>) GetGameTime;
         }
 
@@ -20,9 +22,9 @@ namespace Bridge_of_London.Core.API.Util
             return Game.Time;
         }
 
-        private static Vector3 GetCursorPosition()
+        private static Position GetCursorPosition()
         {
-            return Game.CursorPos;
+            return new Position(Game.CursorPos.X, Game.CursorPos.Y, Game.CursorPos.Z);
         }
 
         private static int GetPing()

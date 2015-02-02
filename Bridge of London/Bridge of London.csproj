@@ -62,8 +62,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\GameUnit.cs" />
+    <Compile Include="Classes\Position.cs" />
     <Compile Include="Core\API\ApiHandler.cs" />
     <Compile Include="Core\API\Drawing\DrawingApi.cs" />
+    <Compile Include="Core\API\Unit\UnitApi.cs" />
     <Compile Include="Core\API\Util\UtilApi.cs" />
     <Compile Include="Core\ScriptLoader.cs" />
     <Compile Include="Program.cs" />

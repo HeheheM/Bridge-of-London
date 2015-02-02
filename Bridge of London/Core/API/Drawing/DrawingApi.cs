@@ -30,12 +30,10 @@ namespace Bridge_of_London.Core.API.Drawing
             
         }
 
-
         private static ARGB MakeARGB(int r, int g, int b, int a)
         {
             return new ARGB(a, r, g, b);
         }
-
 
         private static void DrawCircle(float x, float y, float z, float size, ARGB color)
         {
@@ -47,7 +45,6 @@ namespace Bridge_of_London.Core.API.Drawing
             LeagueSharp.Drawing.DrawCircle(new Vector3(x, y, z), size, ReadColor(color));
         }
 
-
         private static void DrawLine(float x1, float x2, float y1, float y2, float size, ARGB color)
         {
             LeagueSharp.Drawing.DrawLine(x1, y1, x1, x2, size, color.ToSystemColor());
@@ -57,7 +54,6 @@ namespace Bridge_of_London.Core.API.Drawing
         {
             LeagueSharp.Drawing.DrawLine(x1, y1, x2, y2, size, ReadColor(color));
         }
-
 
         private static void DrawText(string text, int size, float x, float y, uint color)
         {
