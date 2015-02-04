@@ -2,6 +2,7 @@
 
 using System;
 using Bridge_of_London.Core.API.Drawing;
+using Bridge_of_London.Core.API.Unit;
 using Bridge_of_London.Core.API.Util;
 using LeagueSharp;
 using MoonSharp.Interpreter;
@@ -19,6 +20,7 @@ namespace Bridge_of_London.Core.API
             //Add API's
             DrawingApi.AddApi(script);
             UtilApi.AddApi(script);
+            UnitApi.AddApi(script);
         }
 
         private static void CallFunc(string funcName)
