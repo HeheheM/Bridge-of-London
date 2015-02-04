@@ -6,146 +6,146 @@ namespace Bridge_of_London.Classes
 {
     internal class GameUnit
     {
-        private Obj_AI_Base b;
+        public Obj_AI_Base Unit { get; private set; }
 
         public string name
         {
-            get { return b.BaseSkinName; }
+            get { return Unit.BaseSkinName; }
         }
 
         public string charName
         {
-            get { return b is Obj_AI_Hero ? ((Obj_AI_Hero) b).ChampionName : b.BaseSkinName; }
+            get { return Unit is Obj_AI_Hero ? ((Obj_AI_Hero) Unit).ChampionName : Unit.BaseSkinName; }
         }
 
         public float level
         {
-            get { return b is Obj_AI_Hero ? ((Obj_AI_Hero) b).Level : 1; }
+            get { return Unit is Obj_AI_Hero ? ((Obj_AI_Hero) Unit).Level : 1; }
         }
 
         public bool visible
         {
-            get { return b.IsVisible; }
+            get { return Unit.IsVisible; }
         }
 
         public GameObjectType type
         {
-            get { return b.Type; }
+            get { return Unit.Type; }
         }
 
         public float x
         {
-            get { return b.ServerPosition.X; }
+            get { return Unit.ServerPosition.X; }
         }
 
         public float y
         {
-            get { return b.ServerPosition.Y; }
+            get { return Unit.ServerPosition.Y; }
         }
 
         public float z
         {
-            get { return b.ServerPosition.Z; }
+            get { return Unit.ServerPosition.Z; }
         }
 
         public bool isAI
         {
-            get { return !b.PlayerControlled; }
+            get { return !Unit.PlayerControlled; }
         }
 
         public bool isMe
         {
-            get { return b.IsMe; }
+            get { return Unit.IsMe; }
         }
 
         public float buffCount
         {
-            get { return b.Buffs.Count(); }
+            get { return Unit.Buffs.Count(); }
         }
 
         public float totalDamage
         {
-            get { return b.FlatMagicDamageMod + b.FlatPhysicalDamageMod; }
+            get { return Unit.FlatMagicDamageMod + Unit.FlatPhysicalDamageMod; }
         }
 
         public bool dead
         {
-            get { return b.IsDead; }
+            get { return Unit.IsDead; }
         }
 
         public GameObjectTeam team
         {
-            get { return b.Team; }
+            get { return Unit.Team; }
         }
 
         public float networkID
         {
-            get { return b.NetworkId; }
+            get { return Unit.NetworkId; }
         }
 
         public float health
         {
-            get { return b.Health; }
+            get { return Unit.Health; }
         }
 
         public float maxHealth
         {
-            get { return b.MaxHealth; }
+            get { return Unit.MaxHealth; }
         }
 
         public float mana
         {
-            get { return b.Mana; }
+            get { return Unit.Mana; }
         }
 
         public float maxMana
         {
-            get { return b.MaxMana; }
+            get { return Unit.MaxMana; }
         }
 
         public bool bInvulnerable
         {
-            get { return b.IsInvulnerable; }
+            get { return Unit.IsInvulnerable; }
         }
 
         public bool bPhysImune
         {
-            get { return b.PhysicalImmune; }
+            get { return Unit.PhysicalImmune; }
         }
 
         public bool bMagicImune
         {
-            get { return b.MagicImmune; }
+            get { return Unit.MagicImmune; }
         }
 
         public bool bTargetable
         {
-            get { return b.IsTargetable; }
+            get { return Unit.IsTargetable; }
         }
 
         public bool bTargetableToTeam
         {
-            get { return b.IsValidTarget(float.MaxValue, false) && b.IsAlly; }
+            get { return Unit.IsValidTarget(float.MaxValue, false) && Unit.IsAlly; }
         }
 
         public bool controlled
         {
-            get { return b.PlayerControlled; }
+            get { return Unit.PlayerControlled; }
         }
 
         public float cdr
         {
-            get { return b.FlatCooldownMod; }
+            get { return Unit.FlatCooldownMod; }
         }
 
         public float critChance
         {
-            get { return b.FlatCritChanceMod; }
+            get { return Unit.FlatCritChanceMod; }
         }
 
         public float critDmg
         {
-            get { return b.FlatCritDamageMod; }
+            get { return Unit.FlatCritDamageMod; }
         }
 
         public float hpPool
@@ -155,22 +155,22 @@ namespace Bridge_of_London.Classes
 
         public float hpRegen
         {
-            get { return b.HPRegenRate; }
+            get { return Unit.HPRegenRate; }
         }
 
         public float mpRegen
         {
-            get { return b.PARRegenRate; }
+            get { return Unit.PARRegenRate; }
         }
 
         public float attackSpeed
         {
-            get { return 1 / b.AttackDelay; }
+            get { return 1 / Unit.AttackDelay; }
         }
 
         public float expBonus
         {
-            get { return b.PercentEXPBonus; }
+            get { return Unit.PercentEXPBonus; }
         }
 
         public float hardness
@@ -180,102 +180,102 @@ namespace Bridge_of_London.Classes
 
         public float lifeSteal
         {
-            get { return b.PercentLifeStealMod; }
+            get { return Unit.PercentLifeStealMod; }
         }
 
         public float spellVamp
         {
-            get { return b.PercentSpellVampMod; }
+            get { return Unit.PercentSpellVampMod; }
         }
 
         public float physReduction
         {
-            get { return b.FlatPhysicalReduction; }
+            get { return Unit.FlatPhysicalReduction; }
         }
 
         public float magicReduction
         {
-            get { return b.FlatMagicReduction; }
+            get { return Unit.FlatMagicReduction; }
         }
 
         public float armorPen
         {
-            get { return b.FlatArmorPenetrationMod; }
+            get { return Unit.FlatArmorPenetrationMod; }
         }
 
         public float magicPen
         {
-            get { return b.FlatMagicPenetrationMod; }
+            get { return Unit.FlatMagicPenetrationMod; }
         }
 
         public float armorPenPercent
         {
-            get { return b.PercentArmorPenetrationMod; }
+            get { return Unit.PercentArmorPenetrationMod; }
         }
 
         public float magicPenPerecent
         {
-            get { return b.PercentMagicPenetrationMod; }
+            get { return Unit.PercentMagicPenetrationMod; }
         }
 
         public float addDamage
         {
-            get { return b.FlatPhysicalDamageMod; }
+            get { return Unit.FlatPhysicalDamageMod; }
         }
 
         public float ap
         {
-            get { return b.FlatMagicDamageMod; }
+            get { return Unit.FlatMagicDamageMod; }
         }
 
         public float damage
         {
-            get { return b.FlatPhysicalDamageMod; }
+            get { return Unit.FlatPhysicalDamageMod; }
         }
 
         public float armor
         {
-            get { return b.Armor; }
+            get { return Unit.Armor; }
         }
 
         public float magicArmor
         {
-            get { return b.SpellBlock; }
+            get { return Unit.SpellBlock; }
         }
 
         public float ms
         {
-            get { return b.MoveSpeed; }
+            get { return Unit.MoveSpeed; }
         }
 
         public float range
         {
-            get { return b.AttackRange; }
+            get { return Unit.AttackRange; }
         }
 
         public float gold
         {
-            get { return b.Gold; }
+            get { return Unit.Gold; }
         }
 
         public Position pos
         {
-            get { return new Position(b.Position.X, b.Position.Y, b.Position.Z); }
+            get { return new Position(Unit.Position.X, Unit.Position.Y, Unit.Position.Z); }
         }
 
         public Position minBBox
         {
-            get { return new Position(b.BBox.Minimum.X, b.BBox.Minimum.Y, b.BBox.Minimum.Z); }
+            get { return new Position(Unit.BBox.Minimum.X, Unit.BBox.Minimum.Y, Unit.BBox.Minimum.Z); }
         }
 
         public Position maxBBox
         {
-            get { return new Position(b.BBox.Maximum.X, b.BBox.Maximum.Y, b.BBox.Maximum.Z); }
+            get { return new Position(Unit.BBox.Maximum.X, Unit.BBox.Maximum.Y, Unit.BBox.Maximum.Z); }
         }
 
         public string armorMaterial
         {
-            get { return b.ArmorMaterial; }
+            get { return Unit.ArmorMaterial; }
         }
 
         public string weaponMaterial
@@ -285,78 +285,77 @@ namespace Bridge_of_London.Classes
 
         public float deathTimer
         {
-            get { return b.DeathDuration; }
+            get { return Unit.DeathDuration; }
         }
 
         public bool canAttack
         {
-            get { return b.CanAttack; }
+            get { return Unit.CanAttack; }
         }
 
         public bool canMove
         {
-            get { return b.CanMove; }
+            get { return Unit.CanMove; }
         }
 
         public bool isStealthed
         {
-            get { return b.HasBuffOfType(BuffType.Invisibility); }
+            get { return Unit.HasBuffOfType(BuffType.Invisibility); }
         }
 
         public bool isRevealSpecificUnit
         {
-            get { return b.CharacterState == GameObjectCharacterState.RevealSpecificUnit; }
+            get { return Unit.CharacterState == GameObjectCharacterState.RevealSpecificUnit; }
         }
 
         public bool isTaunted
         {
-            get { return b.HasBuffOfType(BuffType.Taunt); }
+            get { return Unit.HasBuffOfType(BuffType.Taunt); }
         }
 
         public bool isCharmed
         {
-            get { return b.HasBuffOfType(BuffType.Charm); }
+            get { return Unit.HasBuffOfType(BuffType.Charm); }
         }
 
         public bool isFeared
         {
-            get { return b.HasBuffOfType(BuffType.Fear); }
+            get { return Unit.HasBuffOfType(BuffType.Fear); }
         }
 
         public bool isAsleep
         {
-            get { return b.HasBuffOfType(BuffType.Sleep); }
+            get { return Unit.HasBuffOfType(BuffType.Sleep); }
         }
 
         public bool isNearSight
         {
-            get { return b.HasBuffOfType(BuffType.NearSight); }
+            get { return Unit.HasBuffOfType(BuffType.NearSight); }
         }
 
         public bool isGhosted
         {
-            get { return b.CharacterState == GameObjectCharacterState.Ghosted; }
+            get { return Unit.CharacterState == GameObjectCharacterState.Ghosted; }
         }
 
         public bool isNoRender
         {
-            get { return b.CharacterState == GameObjectCharacterState.NoRender; }
+            get { return Unit.CharacterState == GameObjectCharacterState.NoRender; }
         }
 
         public bool isFleeing
         {
-            get { return b.CharacterState == GameObjectCharacterState.Fleeing; }
+            get { return Unit.CharacterState == GameObjectCharacterState.Fleeing; }
         }
 
         public bool isForceRenderParticles
         {
-            get { return b.CharacterState == GameObjectCharacterState.ForceRenderParticles; }
+            get { return Unit.CharacterState == GameObjectCharacterState.ForceRenderParticles; }
         }
 
-
-        public GameUnit(Obj_AI_Base b)
+        public GameUnit(Obj_AI_Base unit)
         {
-            this.b = b;
+            Unit = unit;
         }
     }
 }
