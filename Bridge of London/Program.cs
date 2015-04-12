@@ -1,4 +1,4 @@
-﻿#region
+#region
 
 using System;
 using Bridge_of_London.Core;
@@ -26,14 +26,14 @@ namespace Bridge_of_London
             ScriptLoader.Init();
 
             // API Events
-            Game.OnGameUpdate += ApiHandler.OnGameUpdate;
+            Game.OnUpdate += ApiHandler.OnGameUpdate;
             Drawing.OnDraw += ApiHandler.OnDraw;
             GameObject.OnCreate += ApiHandler.OnCreateObj;
             GameObject.OnDelete += ApiHandler.OnDeleteObj;
             Game.OnWndProc += ApiHandler.OnWndMsg;
             Obj_AI_Base.OnProcessSpellCast += ApiHandler.OnProcessSpellCast;
-            Game.OnGameInput += ApiHandler.OnSendChat;
-            Game.OnGameSendPacket += ApiHandler.OnSendPacket;
+            Game.OnInput += ApiHandler.OnSendChat;
+            Game.OnSendPacket += ApiHandler.OnSendPacket;
         }
     }
 }
