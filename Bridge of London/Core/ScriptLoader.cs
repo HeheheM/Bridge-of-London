@@ -1,4 +1,4 @@
-﻿#region
+#region
 
 using System;
 using System.Collections.Generic;
@@ -48,7 +48,7 @@ namespace Bridge_of_London.Core
             }
         }
 
-        public static string RootScriptDir = Path.Combine(Config.LeagueSharpDirectory, "Lua");
+        public static string RootScriptDir = Path.Combine(Config.AppDataDirectory, "Lua");
         public static string RootLibScriptDir = Path.Combine(RootScriptDir, "Lib");
     }
 }
